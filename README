@@ -1,0 +1,8 @@
+Hardware:
+- Arduino Uno
+- USB cable
+- Continuous rotation servo
+
+Software:
+- sudo pip install pyserial appscript
+

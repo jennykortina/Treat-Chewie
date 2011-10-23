@@ -16,10 +16,9 @@ void loop()
   // one full rotation
   // speed and time based on trial and error
   treater.write(60);
-  delay(1330);
+  delay(1410);
   // writing 94 stops the servo, which awe learnt through trial and error
   treater.write(94);
-  delay(1000);
   // do nothing
   while(1) {}
 }

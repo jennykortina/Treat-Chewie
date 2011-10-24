@@ -4,7 +4,7 @@ sys.path.append("../")
 import serial
 import treatchewie_settings
 
-def run_arduino(arduino_board_location):
+def run_arduino(arduino_board_location=None):
     # run the code already on the arduino
     if not arduino_board_location:
         arduino_board_location = treatchewie_settings.ARDUINO_BOARD_LOCATION

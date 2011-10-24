@@ -11,7 +11,12 @@
 <div id="wrapper">
 	<h1>Soon you will be able to treat me.  I dance for treats</h1>
     <img src="http://dl.dropbox.com/u/42873802/Images/chewie.gif" />
-    <form>
-
+    <div>
+        next scheduled treat: {{next_treat_time}}</br>
+        next open slot: {{next_treat_slot}}
+    </div>
+    <form action="/add" method="POST">{% raw xsrf_form_html() %}
+        <label for="phone">Your phone number:</label>
+        <input type="text" name="phone" id="phone"/>
     </form>
 </div>	

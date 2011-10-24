@@ -17,7 +17,7 @@ void loop()
   // speed and time based on trial and error
   treater.write(60);
   delay(1410);
-  // writing 94 stops the servo, which awe learnt through trial and error
+  // writing 94 stops the servo, which we learnt through trial and error
   treater.write(94);
   // do nothing
   while(1) {}

@@ -23,7 +23,7 @@ class TreatController():
 
         # place facetime call
         facetime.make_call(phone_to_call)
-        time.sleep(45)
+        time.sleep(30)
 
         # dispense treat
         try:

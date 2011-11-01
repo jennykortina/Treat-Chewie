@@ -1,0 +1,124 @@
+/*global style */
+body {
+	background: #161616;
+	color: #ccc;
+	font-style: italic;
+}
+html, body { 
+	height:99%;
+	height:97%\9; /* IE8 and below */  
+}
+a {
+	text-decoration: none;
+	color: #ccc;
+}
+img {
+	border: none;
+}
+input {
+	background-color: black;
+	border: 1px solid #ccc;
+	color: #ccc;
+	float: right;
+}
+#share {
+	height: 24px;
+	margin-left: 20px;
+	margin-top: 15px;
+	position: relative;
+	z-index: 10;
+}
+.share {
+	float: left;
+	width: 45px;
+	margin: 0;
+	margin-top: 2px;
+}
+#share img {
+	float: left;
+	height: 20px;
+	width: 20px;
+	padding: 2px;
+}
+.howitworks, .home {
+	float: right;
+	margin: 0px 20px 0px 0px;
+	cursor: pointer;
+}
+/*home style */
+#homeBG {
+	display:none;
+	background: url(img/chewie.png) #161616;background-repeat:no-repeat;background-position:left bottom;
+	height: 100%;
+	width: 100%;
+}
+#homeWrapper {
+	width: 455px;
+	margin: 0 auto;
+	margin-top: -25px;
+}
+.chewiePic {
+	margin-top: 65px;
+}
+.chewieDescription {
+	margin: 30px 0;
+	line-height: 1.5em;
+}
+.submit {
+	width: 300px;
+	float: left;
+}
+.submit p {
+	float: left;
+	margin: 0;	
+}
+.submitButton {
+	float: right;
+	margin-top: 5px;
+	cursor: pointer;
+}
+.clear {
+	clear: both;
+	height: 5px;
+}
+
+/*finished style */
+#submitWrapper {
+	background: url(img/clock.png);
+	background-repeat:no-repeat;
+	background-position:right top; 
+	width: 870px;
+	margin: 0 auto;
+	margin-top: -32px;
+}
+.clock {
+	margin-top: 65px;
+}
+.row {
+	border-top: 1px solid white;
+	width: 870px;
+	margin: 35px 0;
+}
+.row h1 {
+	color: #ffea05;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 35px 0;
+}
+/*how it works style */
+#howitworksWrapper {
+	background: url(img/pinballmachine.png);
+	background-repeat:no-repeat;
+	background-position:right top; 
+	width: 870px;
+	margin: 0 auto;
+	margin-top: -32px;
+}
+#howitworksWrapper img {
+	margin-top: 65px;
+	margin-bottom: 25px;
+}
+.howitworksDescription {
+	width: 500px;
+	line-height: 1.5em;
+}

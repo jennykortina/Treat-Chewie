@@ -46,7 +46,7 @@
 	<div id="homeWrapper">
 		<img class="chewiePic" src="{{static_url('img/treatsforchewie.png')}}" />
 		<p class="chewieDescription">The feel-good interactive feeding experience that makes the cutest dog in the whole wide world the happiest (but not fattest) dog you've ever seen.  To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, 5 minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).</p>
-		<form action="/add" method="POST" id="add_form">{% raw xsrf_form_html() %}
+		<form action="/add" method="POST" id="add_form">
 			<div class="submit">
 				<p>your first name</p><input type="text" name="name" />
 				<div class="clear"></div>

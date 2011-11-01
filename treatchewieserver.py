@@ -23,7 +23,6 @@ class MainHandler(tornado.web.RequestHandler):
 
 class AddTreatHandler(tornado.web.RequestHandler):
     def post(self):
-        self.check_xsrf_cookie()
         phone = self.get_argument('phone')
         name = self.get_argument('name')
         phone = format_valid_phone_number(phone)

@@ -1,1 +1,1 @@
-ARDUINO_BOARD_LOCATION = '/dev/tty.usbmodem641'
+ARDUINO_BOARD_LOCATION = '/dev/tty.usbmodemfd12131'

@@ -22,3 +22,6 @@ def format_datetime_for_printing(dt):
     else:
         format = "%I%p on %A"
     return dt.strftime(format)
+
+def get_this_hour_dt():
+    return datetime.datetime.now().replace(minute=0, second=0, microsecond=0)

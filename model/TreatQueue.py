@@ -6,11 +6,14 @@ from pymongo import ASCENDING, DESCENDING
 from pymongo.objectid import ObjectId
 from model.MongoMixIn import MongoMixIn
 
+from lib.utils import get_this_hour_dt
+
 class TreatQueue(MongoMixIn):
     MONGO_DB_NAME = "treat_queue"
     MONGO_COLLECTION_NAME = "tq"
 
     A_ID                = '_id'
+    A_NAME              = 'name'
     A_PHONE             = 'phone'
     A_TREAT_TIME        = 'treat_time'      # year-month-day-hour e.g. 2011-10-23-24
     A_STATUS            = 'status'
@@ -35,12 +38,13 @@ class TreatQueue(MongoMixIn):
                                    (klass.A_TREAT_TIME, ASCENDING)], unique=False)
 
     @classmethod
-    def add_to_queue(klass, phone, treat_time=None):
+    def add_to_queue(klass, name, phone, treat_time=None):
         if not treat_time:
-            treat_time = klass.get_next_treat_slot()
+            treat_time = klass.get_next_open_treat_slot()
         treat_time = datetime.datetime.strftime(treat_time, 
                                                 klass.TREAT_TIME_FORMAT)
         doc = {
+            klass.A_NAME: name,
             klass.A_PHONE: phone,
             klass.A_TREAT_TIME: treat_time,
             klass.A_STATUS: klass.STATUS_PENDING
@@ -68,7 +72,14 @@ class TreatQueue(MongoMixIn):
 
     @classmethod
     def get_next_treat(klass, get_latest=False):
-        spec = {klass.A_STATUS: klass.STATUS_PENDING}
+        this_hour = datetime.datetime.strftime(get_this_hour_dt(),
+                                               klass.TREAT_TIME_FORMAT)
+        spec = {
+            klass.A_STATUS: klass.STATUS_PENDING,
+            klass.A_TREAT_TIME: {
+                "$gte":this_hour
+            }
+        }
         if get_latest:
             sort = [(klass.A_TREAT_TIME, DESCENDING)]
         else:
@@ -78,7 +89,6 @@ class TreatQueue(MongoMixIn):
         if treat and len(treat) == 1: 
             return treat[0]
         else:
-            logging.error("[TreatQueue.get_next_treat] Error: len(results) != 1")
             return None
 
     @classmethod
@@ -102,7 +112,9 @@ class TreatQueue(MongoMixIn):
     def get_next_open_treat_slot(klass):
         next_treat_time = klass.get_next_treat_time(get_latest=True)
         if not next_treat_time:
-            next_treat_time = datetime.datetime.now().replace(minute=0, second=0)
+            next_treat_time = datetime.datetime.now().replace(minute=0, 
+                                                              second=0,
+                                                              microsecond=0)
         next_treat_slot = next_treat_time + datetime.timedelta(hours=1)
         if next_treat_slot.hour > klass.TREAT_HOURS_END:
             next_treat_slot = next_treat_slot.replace(hour=klass.TREAT_HOURS_START)

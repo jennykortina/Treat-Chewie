@@ -25,10 +25,11 @@ class AddTreatHandler(tornado.web.RequestHandler):
     def post(self):
         self.check_xsrf_cookie()
         phone = self.get_argument('phone')
+        name = self.get_argument('name')
         phone = format_valid_phone_number(phone)
         if phone:
             next_treat_slot = TreatQueue.get_next_open_treat_slot()
-            resp = TreatQueue.add_to_queue(phone, next_treat_slot)
+            resp = TreatQueue.add_to_queue(name, phone, next_treat_slot)
             if resp:
                 self.write("Added you to the queue at %s" % resp)
             else:

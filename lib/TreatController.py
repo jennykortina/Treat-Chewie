@@ -20,6 +20,7 @@ class TreatController():
                 phone_to_call = treat_doc.get(TreatQueue.A_PHONE)
             else:
                 # no treat for this hour - so do we dispense?
+		print "no treats to give this hour. exiting."
                 return
         else:
             phone_to_call = format_valid_phone_number(phone_to_call)

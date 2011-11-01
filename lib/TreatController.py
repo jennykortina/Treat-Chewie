@@ -15,7 +15,7 @@ class TreatController():
         # find the treat for this hour
         treat_doc = None
         if not phone_to_call:
-            treat_doc = TreatQueue.get_next_treat()
+            treat_doc = TreatQueue.get_current_treat()
             if treat_doc:
                 phone_to_call = treat_doc.get(TreatQueue.A_PHONE)
         else:

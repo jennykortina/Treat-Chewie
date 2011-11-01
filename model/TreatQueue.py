@@ -92,6 +92,16 @@ class TreatQueue(MongoMixIn):
             return None
 
     @classmethod
+    def get_current_treat(klass):
+        this_hour = datetime.datetime.strftime(get_this_hour_dt(),
+                                               klass.TREAT_TIME_FORMAT)
+        spec = {
+            klass.A_STATUS: klass.STATUS_PENDING,
+            klass.A_TREAT_TIME: this_hour
+        }
+        return klass.mdbc().find_one(spec)
+
+    @classmethod
     def get_next_treat_time(klass, get_latest=False):
         next_treat = klass.get_next_treat(get_latest=get_latest)
         if next_treat:
@@ -100,13 +110,6 @@ class TreatQueue(MongoMixIn):
                                                          klass.TREAT_TIME_FORMAT)
             return next_treat_time
         return None
-
-    @classmethod
-    def get_current_treat(klass):
-        now = datetime.datetime.now()
-        now_string = now.strftime(klass.TREAT_TIME_FORMAT)
-        spec = {klass.A_TREAT_TIME: now_string}
-        return klass.mdbc().find_one(spec)
 
     @classmethod
     def get_next_open_treat_slot(klass):

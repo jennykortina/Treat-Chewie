@@ -48,7 +48,7 @@ input {
 /*home style */
 #homeBG {
 	display:none;
-	background: url(img/chewie.png) #161616;background-repeat:no-repeat;background-position:left bottom;
+	background: url(../img/chewie.png) #161616;background-repeat:no-repeat;background-position:left bottom;
 	height: 100%;
 	width: 100%;
 }
@@ -85,7 +85,7 @@ input {
 
 /*finished style */
 #submitWrapper {
-	background: url(img/clock.png);
+	background: url(../img/clock.png);
 	background-repeat:no-repeat;
 	background-position:right top; 
 	width: 870px;
@@ -108,7 +108,7 @@ input {
 }
 /*how it works style */
 #howitworksWrapper {
-	background: url(img/pinballmachine.png);
+	background: url(../img/pinballmachine.png);
 	background-repeat:no-repeat;
 	background-position:right top; 
 	width: 870px;

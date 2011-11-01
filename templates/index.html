@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Treat Chewie</title>
-<LINK href="main.css" rel="stylesheet" type="text/css">
+<LINK href="{{static_url('css/main.css')}}" rel="stylesheet" type="text/css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <script>
 	$(document).ready(function(){
@@ -36,26 +36,26 @@
 
 <div id="share">
 	<p class="share">share</p>
-	<img src="img/fb.png" />
-	<a href="https://twitter.com/share?text=I+treated+Chewie+and+you+should+too!&url=http://www.treatchewie.com"><img src="img/tw.png" /></a>
+	<img src="{{static_url('img/fb.png')}}" />
+	<a href="https://twitter.com/share?text=I+treated+Chewie+and+you+should+too!&url=http://www.treatchewie.com"><img src="{{static_url('img/tw.png')}}" /></a>
 	<p class="howitworks">how it works</p><p class="home">home</p>
 </div>
 
 <div id="homeBG">	
 	<div id="homeWrapper">
-		<img class="chewiePic" src="img/treatsforchewie.png" />
+		<img class="chewiePic" src="{{static_url('img/treatsforchewie.png')}}" />
 		<p class="chewieDescription">The feel-good interactive feeding experience that makes the cutest dog in the whole wide world the happiest (but not fattest) dog you've ever seen.  To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, 5 minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).</p>
 		<div class="submit">
 			<p>your first name</p><input type="text" name="firstname" />
 			<div class="clear"></div>
 			<p>your phone number</p><input type="text" name="phonenumber" />
 		</div>	
-		<img class="submitButton" src="img/submit.png" />
+		<img class="submitButton" src="{{static_url('img/submit.png')}}" />
 	</div>	
 </div>	
 
 <div id="submitWrapper" style="display:none;">
-	<img class="clock" src="img/finished.png">
+	<img class="clock" src="{{static_url('img/finished.png')}}">
 	<div class="row"> 
 		<h1>Sunday, October 30</h1>
 		
@@ -63,7 +63,7 @@
 </div>
 
 <div id="howitworksWrapper" style="display:none;">
-	<img src="img/howitworks.png" />
+	<img src="{{static_url('img/howitworks.png')}}" />
 	<p class="howitworksDescription">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum</p>
 </div>
 

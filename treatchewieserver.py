@@ -1,3 +1,4 @@
+import os
 import logging
 
 import tornado.ioloop
@@ -16,7 +17,7 @@ class MainHandler(tornado.web.RequestHandler):
             next_treat_time = "No treats scheduled :( Give the next treat!"
         next_treat_slot = TreatQueue.get_next_open_treat_slot()
         next_treat_slot = format_datetime_for_printing(next_treat_slot)
-        self.render("templates/chewie.html", 
+        self.render("templates/index.html", 
                     next_treat_time=next_treat_time,
                     next_treat_slot=next_treat_slot)
 
@@ -38,11 +39,15 @@ class AddTreatHandler(tornado.web.RequestHandler):
     def get(self):
         pass
 
+settings = {
+    'static_path': os.path.join(os.path.dirname(__file__), "static")
+}
+
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/add", AddTreatHandler),
     (r"/static/.*", tornado.web.StaticFileHandler)
-])
+], **settings)
 
 if __name__ == "__main__":
     application.listen(8887)

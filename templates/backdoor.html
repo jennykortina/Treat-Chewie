@@ -1,7 +1,68 @@
+<!DOCTYPE html PUBLIC -//W3C//DTD XHTML 1.0 Strict//EN   http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd>
 <html>
-    <head>
-    </head>
-    <body>
-        super secret stuff!
-    </body>
+<head>
+<title>Treat Chewie</title>
+<LINK href="{{static_url('css/main.css')}}" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	$("body").ready(function(){
+	    $('#homeBG').fadeIn(3000);
+	});
+
+	$(".makeCall").click(function(){
+		var data = {
+			'phone': $('#phone').val(),
+		};
+		$.ajax({
+			type: 'POST',
+			url: '/backdoor',
+			data: data,
+            success: function(data) {},
+			error: function() {}
+		});  
+	});
+
+    $(".dispenseTreat").click(function(){
+		var data = {
+			'dispense': 1,
+		};
+		$.ajax({
+			type: 'POST',
+			url: '/backdoor',
+			data: data,
+            success: function(data) {},
+			error: function() {}
+		});  
+	});
+
+});
+</script>
+</head>
+
+<body>
+
+<div id="homeBG">	
+	<div id="homeWrapper">
+        <div style="margin-top:100px"></div>
+        Get the Treat Machine to make a facetime call
+		<form action="/backdoor" method="POST" id="make_call_form">
+			<div class="submit">
+				<p>number to call</p>
+				<input type="text" id="phone" name="phone" />
+			</div>	
+			<img class="makeCall" src="{{static_url('img/submit.png')}}" />
+		</form>
+        </br>
+        Dispense a treat.
+		<form action="/backdoor" method="POST" id="dispense_form">
+			<div class="submit">
+			</div>	
+			<img class="dispenseTreat" src="{{static_url('img/submit.png')}}" />
+		</form>
+	</div>	
+</div>	
+
+</body>
+
 </html>

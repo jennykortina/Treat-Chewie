@@ -34,14 +34,14 @@ input {
 	margin: 0;
 	margin-top: 2px;
 }
-#share img, .fbshares {
+#share img, .fbshare {
 	float: left;
 	height: 20px;
 	width: 20px;
 	padding: 2px;
 }
 .fbconnectbutton_simple, .fbconnectbutton_rtl_simple {
-	background-image: url(../img/fb.png !important);
+	background-image: url(http://treatchewie.dyndns.info/static/img/fb.png !important);
 }
 .howitworks, .home {
 	float: right;

@@ -17,10 +17,18 @@ def format_valid_phone_number(phone):
     return False
 
 def format_datetime_for_printing(dt):
-    if datetime.datetime.now().date() == dt.date():
+    now = datetime.datetime.now()
+    ampm = dt.strftime('%p').lower()
+    hour = dt.strftime('%I').lstrip('0')
+    day = dt.strftime('%d').lstrip('0')
+    if now.date() == dt.date():
         format = "%I%p today"
+    elif now.strftime("%U") == dt.strftime("%U"):
+        # if the date is in this week, only show the name of the day
+        format = "%s%s on %s" % (hour, ampm, '%A')
     else:
-        format = "%I%p on %A"
+        # otherwise show the day and month too
+        format = "%s%s on %s, %s %s" % (hour, ampm, '%A', '%B', day)
     return dt.strftime(format)
 
 def get_this_hour_dt():

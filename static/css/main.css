@@ -107,13 +107,13 @@ input {
 	margin: 35px 0;
 }
 .row h1 {
-	color: #FFEA05;
 	font-size: 20px;
 	font-weight: normal;
 	margin: 35px 0px 20px 0px;
 }
 .row h2 {
 	color: #b546a2;
+	font-weight: normal;
 	margin-left: 10px;
 }
 /*how it works style */

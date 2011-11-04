@@ -119,6 +119,8 @@ class TreatQueue(MongoMixIn):
                                                               second=0,
                                                               microsecond=0)
         next_treat_slot = next_treat_time + datetime.timedelta(hours=1)
+        if next_treat_slot.hour < klass.TREAT_HOURS_START:
+            next_treat_slot = next_treat_slot.replace(hour=klass.TREAT_HOURS_START)
         if next_treat_slot.hour > klass.TREAT_HOURS_END:
             next_treat_slot = next_treat_slot.replace(hour=klass.TREAT_HOURS_START)
             next_treat_slot = next_treat_slot + datetime.timedelta(days=1)

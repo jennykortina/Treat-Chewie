@@ -38,7 +38,11 @@ class AuthMixin():
         return False
 
 
-class MainHandler(tornado.web.RequestHandler):
+class BaseHandler(tornado.web.RequestHandler):
+    pass
+
+
+class MainHandler(BaseHandler):
     def get(self):
         next_treat_time = TreatQueue.get_next_treat_time()
         if next_treat_time:
@@ -52,7 +56,7 @@ class MainHandler(tornado.web.RequestHandler):
                     next_treat_slot=next_treat_slot)
 
 
-class AddTreatHandler(tornado.web.RequestHandler):
+class AddTreatHandler(BaseHandler):
     def post(self):
         phone = self.get_argument('phone')
         name = self.get_argument('name')
@@ -81,7 +85,13 @@ class AddTreatHandler(tornado.web.RequestHandler):
         pass
 
 
-class BackdoorHandler(tornado.web.RequestHandler, AuthMixin):
+class QueueHandler(BaseHandler):
+    def get(self):
+        treat_queue = TreatQueue.get_treat_queue()
+        self.write(treat_queue)
+
+
+class BackdoorHandler(BaseHandler, AuthMixin):
     def get(self):
         if self.authenticate_user():
             self.render('templates/backdoor.html')
@@ -101,7 +111,7 @@ class BackdoorHandler(tornado.web.RequestHandler, AuthMixin):
             dispense_treat.run_arduino()
             self.write(1)
 
-class AuthHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
+class AuthHandler(BaseHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
     def get(self):
         if self.get_argument("openid.mode", None):
@@ -127,6 +137,7 @@ application = tornado.web.Application([
     (r"/add", AddTreatHandler),
     (r"/backdoor", BackdoorHandler),
     (r"/auth", AuthHandler),
+    (r"/queue", QueueHandler),
     (r"/static/.*", tornado.web.StaticFileHandler)
 ], **app_settings)
 

@@ -1,6 +1,9 @@
 import datetime
 import logging
+from dateutil.parser import parse
 #import time
+
+from collections import defaultdict
 
 from pymongo import ASCENDING, DESCENDING
 from pymongo.objectid import ObjectId
@@ -16,6 +19,7 @@ class TreatQueue(MongoMixIn):
     A_NAME              = 'name'
     A_PHONE             = 'phone'
     A_TREAT_TIME        = 'treat_time'      # year-month-day-hour e.g. 2011-10-23-24
+    A_PRETTY_HOUR       = 'pretty_hour'      # formatted for printing
     A_STATUS            = 'status'
 
     STATUS_PENDING      = 1
@@ -139,3 +143,41 @@ class TreatQueue(MongoMixIn):
             treat_id = ObjectId(treat_id)
         spec = {klass.A_ID: treat_id}
         return klass.mdbc().find_one(spec)
+
+    @classmethod
+    def get_treat_queue(klass):
+        now = datetime.datetime.now()
+        beginning_of_week = now - datetime.timedelta(
+            int(now.strftime('%w')))
+        beginning_of_week = beginning_of_week.strftime('%Y-%m-%d')
+        spec = {
+            klass.A_TREAT_TIME: {
+                "$gt":beginning_of_week
+            }
+        }
+        sort = [(klass.A_TREAT_TIME, ASCENDING)]
+        cursor = klass.mdbc().find(spec).sort(sort)
+        treats = [treat for treat in cursor]
+        tq = defaultdict(lambda: list())
+        tq = list()
+        for t in treats:
+            del t['_id']
+            treat_time = t.get(klass.A_TREAT_TIME)
+            treat_d = parse(treat_time[:10])
+            day = treat_d.day
+            format_string = '%s, %s %s' % ('%A', '%B', day)
+            treat_d = treat_d.strftime(format_string)
+            treat_dt = parse(treat_time)
+            hour = treat_dt.hour
+            ampm = treat_dt.strftime('%p').lower()
+            t[klass.A_PRETTY_HOUR] = "%s%s" % (hour, ampm)
+            if (not tq or 
+                tq and tq[-1].get('date') != treat_d):
+                item = {
+                    'date':treat_d,
+                    'data':[t]
+                }
+                tq.append(item)
+            else:
+                tq[-1]['data'].append(t)
+        return tq

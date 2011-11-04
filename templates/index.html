@@ -12,7 +12,7 @@
 	  });
 
 	  $(".submitButton").click(function(){
-		$("#add_form").submit();
+		$.post("/add", $("#add_form").serialize());
 		$("#homeBG").fadeOut(700);
 		$('#submitWrapper').delay(800).fadeIn(1000);
 	  });
@@ -73,12 +73,10 @@
 	<p class="howitworksDescription">What the user sees:<br>
 	When a user enters their name and phone number they are added to the Chewie treat queue.  When it's time for their treat dispensed they'll receive a Facetime call where they'll get to see their treat drop and Chewie enjoy it!</p>
 
-	<p class="howitworksDescription">What's actually happening:</p>
+	<p class="howitworksDescription">What's actually happening:<br>
 	To understand what's going on it's best to first understand how the actual treat machine works.  The treat machine body is a gumball machine that was modified to dispense dog treats instead of gumballs and also had its coin mechanism replaced with a servo controlled by an ardiuno.  The ardiuno controlled treat machine and a webcam are plugged into a mac mini that is running a web server which is hosting www.treatchewie.com.  Using a combination of python, arduino code, and applescript we are able to control the treat dispenser as well as make facetime calls.	</p>
 <p class="howitworksDescription">
-	For those of you interested in building your own treat machine, a detailed set of build instructions will be available on <a href="www.hackaddict.net">hackaddict.net</a> in the near future.
-
-	</p>
+	For those of you interested in building your own treat machine, a detailed set of build instructions will be available on <a href="www.hackaddict.net">hackaddict.net</a> in the near future.</p>
 
 	Some things to note:
 	<ul>

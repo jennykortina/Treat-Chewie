@@ -31,5 +31,8 @@ def format_datetime_for_printing(dt):
         format = "%s%s on %s, %s %s" % (hour, ampm, '%A', '%B', day)
     return dt.strftime(format)
 
-def get_this_hour_dt():
-    return datetime.datetime.now().replace(minute=0, second=0, microsecond=0)
+def get_this_hour_dt(next_hour_if_10_past_hour=True):
+    now = datetime.datetime.now()
+    if next_hour_if_10_past_hour and now.minute > 10:
+        now = now + datetime.timedelta(hours=1)
+    return now.replace(minute=0, second=0, microsecond=0)

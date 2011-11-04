@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Treat Chewie</title>
+<link rel="apple-touch-icon" href="{{static_url('img/apple-touch-icon.png')}}" />
 <LINK href="{{static_url('css/main.css')}}" rel="stylesheet" type="text/css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <script>
@@ -54,7 +55,7 @@ $(document).ready(function(){
 	<p class="share">share</p>	
 	<a class="fbshare" name="fb_share" type="icon" share_url="http://www.treatchewie.com"></a> 
 	<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-	<a href="https://twitter.com/share?text=I+treated+Chewie+and+you+should+too!&url=http://www.treatchewie.com"><img src="{{static_url('img/tw.png')}}" /></a>
+	<a href="https://twitter.com/share?text=Send+@Chewie+treats!&url=http://www.treatchewie.com"><img src="{{static_url('img/tw.png')}}" /></a>
 	<p class="howitworks">how it works</p><p class="home">home</p>
 </div>
 
@@ -86,13 +87,13 @@ $(document).ready(function(){
 <div id="howitworksWrapper" style="display:none;">
 	<img src="{{static_url('img/howitworks.png')}}" />
 	
-	<p class="howitworksDescription">The easiest way to break down what's going on with our treat machine is to break it into two workflows: what the user sees and what is happening with Chewie and her treat machine aka what's actually happening.</p>
+	<p class="howitworksDescription">The easiest way to break down what's going on with our treat machine is to break it into two workflows: what the user sees and what is actually happening.</p>
 
 	<p class="howitworksDescription">What the user sees:<br>
 	When a user enters their name and phone number they are added to the Chewie treat queue.  When it's time for their treat dispensed they'll receive a Facetime call where they'll get to see their treat drop and Chewie enjoy it!</p>
 
 	<p class="howitworksDescription">What's actually happening:<br>
-	To understand what's going on it's best to first understand how the actual treat machine works.  The treat machine body is a gumball machine that was modified to dispense dog treats instead of gumballs and also had its coin mechanism replaced with a servo controlled by an ardiuno.  The ardiuno controlled treat machine and a webcam are plugged into a mac mini that is running a web server which is hosting www.treatchewie.com.  Using a combination of python, arduino code, and applescript we are able to control the treat dispenser as well as make facetime calls.	</p>
+	To understand what's going on it's best to first understand how the actual treat machine works.  The treat machine body is a gumball machine that was modified to dispense dog treats instead of gumballs.  It also had its coin mechanism replaced with a servo controlled by an ardiuno.  The ardiuno controlled treat machine and a webcam are plugged into a mac mini that is running a web server which is hosting www.treatchewie.com.  Using a combination of python, arduino code, and applescript we are able to control the treat dispenser as well as make Facetime calls.	</p>
 <p class="howitworksDescription">For those of you interested in building your own treat machine, a detailed set of build instructions will be available on <a href="http://www.hackaddict.net">hackaddict.net</a> in the near future.</p>
 
 	Some things to note:

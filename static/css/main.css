@@ -41,7 +41,7 @@ input {
 	padding: 2px;
 }
 .fbconnectbutton_simple, .fbconnectbutton_rtl_simple {
-	background-image: url(../img/fb.png);
+	background-image: url(../img/fb.png !important);
 }
 .howitworks, .home {
 	float: right;
@@ -94,6 +94,7 @@ input {
 	width: 870px;
 	margin: 0 auto;
 	margin-top: -32px;
+	min-height: 435px;
 }
 .clock {
 	margin-top: 65px;

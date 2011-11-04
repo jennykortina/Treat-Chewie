@@ -22,7 +22,7 @@ $(document).ready(function(){
 			data: data,
 			success: function(data) {
 				console.log(data);
-				$("#appointment").html(data);
+				$("#appointment").html(data.treat_time);
 				$("#homeBG").fadeOut(700);
 				$('#submitWrapper').delay(800).fadeIn(1000);
 			},
@@ -78,7 +78,7 @@ $(document).ready(function(){
 <div id="submitWrapper" style="display:none;">
 	<img class="clock" src="{{static_url('img/finished.png')}}">
 	<div class="row"> 
-		<h1>Congratulations, you've scheduled a chewie treat appointment for:</h1>
+		<h1>Congratulations, you've scheduled a Chewie treat appointment for:</h1>
 		<p id="appointment"></p>
 	</div>
 </div>

@@ -6,7 +6,7 @@ from pymongo import ASCENDING, DESCENDING
 from pymongo.objectid import ObjectId
 from model.MongoMixIn import MongoMixIn
 
-from lib.utils import get_this_hour_dt
+from lib.utils import get_this_hour_dt, format_datetime_for_printing
 
 class TreatQueue(MongoMixIn):
     MONGO_DB_NAME = "treat_queue"
@@ -41,17 +41,17 @@ class TreatQueue(MongoMixIn):
     def add_to_queue(klass, name, phone, treat_time=None):
         if not treat_time:
             treat_time = klass.get_next_open_treat_slot()
-        treat_time = datetime.datetime.strftime(treat_time, 
-                                                klass.TREAT_TIME_FORMAT)
+        treat_time_string = datetime.datetime.strftime(treat_time, 
+                                                       klass.TREAT_TIME_FORMAT)
         doc = {
             klass.A_NAME: name,
             klass.A_PHONE: phone,
-            klass.A_TREAT_TIME: treat_time,
+            klass.A_TREAT_TIME: treat_time_string,
             klass.A_STATUS: klass.STATUS_PENDING
         }
         try:
             klass.mdbc().insert(doc)
-            return treat_time
+            return format_datetime_for_printing(treat_time)
         except Exception, e:
             logging.error("[TreatChewie.add_to_queue] Error: %s" % e)
             return False

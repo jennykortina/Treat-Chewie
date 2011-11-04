@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../")
+sys.path.append('../')
 
 from lib.TreatController import TreatController
-TreatController.dispense_treat()
+TreatController.send_text_reminder()

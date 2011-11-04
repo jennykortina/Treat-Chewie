@@ -5,31 +5,45 @@
 <LINK href="{{static_url('css/main.css')}}" rel="stylesheet" type="text/css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
 
-	  $("body").ready(function(){
-		$('#homeBG').fadeIn(3000);
-	  });
+	$("body").ready(function(){
+	$('#homeBG').fadeIn(3000);
+	});
 
-	  $(".submitButton").click(function(){
-		$.post("/add", $("#add_form").serialize());
-		$("#homeBG").fadeOut(700);
-		$('#submitWrapper').delay(800).fadeIn(1000);
-	  });
+	$(".submitButton").click(function(){
+		var data = {
+			'phone': $('#phone').val(),
+			'name': $('#name').val()
+		};
+		$.ajax({
+			type: 'POST',
+			url: '/add',
+			data: data,
+			success: function(data) {
+				console.log(data);
+				$("#homeBG").fadeOut(700);
+				$('#submitWrapper').delay(800).fadeIn(1000);
+			},
+			error: function() {
+				console.log('error');
+			}
+		});  
+	});
 
-	 $(".howitworks").click(function(){
+	$(".howitworks").click(function(){
 		$("#homeBG").fadeOut(700);
 		$("#submitWrapper").fadeOut(700);
 		$('#howitworksWrapper').delay(800).fadeIn(1000);
-	  });
+	});
 
-	 $(".home").click(function(){
+	$(".home").click(function(){
 		$("#howitworksWrapper").fadeOut(700);
 		$("#submitWrapper").fadeOut(700);
 		$('#homeBG').delay(800).fadeIn(1000);
-	  });
-
 	});
+
+});
 </script>
 </head>
 
@@ -48,9 +62,11 @@
 		<p class="chewieDescription">The feel-good interactive feeding experience that makes the cutest dog in the whole wide world the happiest (but not fattest) dog you've ever seen.  To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, 5 minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).</p>
 		<form action="/add" method="POST" id="add_form">
 			<div class="submit">
-				<p>your first name</p><input type="text" name="name" />
+				<p>your first name</p>
+				<input type="text" id="name" name="name" />
 				<div class="clear"></div>
-				<p>your phone number</p><input type="text" name="phone" />
+				<p>your phone number</p>
+				<input type="text" id="phone" name="phone" />
 			</div>	
 			<img class="submitButton" src="{{static_url('img/submit.png')}}" />
 		</form>

@@ -26,15 +26,25 @@ class AddTreatHandler(tornado.web.RequestHandler):
         phone = self.get_argument('phone')
         name = self.get_argument('name')
         phone = format_valid_phone_number(phone)
-        if phone:
+        if phone and name:
             next_treat_slot = TreatQueue.get_next_open_treat_slot()
-            resp = TreatQueue.add_to_queue(name, phone, next_treat_slot)
-            if resp:
-                self.write("Added you to the queue at %s" % resp)
+            treat_time = TreatQueue.add_to_queue(name, phone, next_treat_slot)
+            if treat_time:
+                resp = {
+                    'success':1,
+                    'treat_time': treat_time
+                }
             else:
-                self.write("Sorry, there was an error")
+                resp = {
+                    'error': 1,
+                    'message': 'Sorry, there was an error adding you to the queue'
+                }
         else:
-            self.write("Invalid phone number")
+            resp = {
+                'error': 1,
+                'message': 'Either first_name or phone_number were not provided'
+            }
+        self.write(resp)
 
     def get(self):
         pass

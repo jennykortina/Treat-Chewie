@@ -1,4 +1,5 @@
 import os
+import logging
 import re
 
 import settings
@@ -16,7 +17,7 @@ class AuthMixin():
     def authenticate_user(self):
         session_email = self.get_secure_cookie('session_email')
         if not session_email:
-            self.redirect('/auth/')
+            self.redirect('/auth')
             return False
         if not self.is_session_email_authorized(session_email):
             self.clear_cookie('session_email')
@@ -87,10 +88,18 @@ class BackdoorHandler(tornado.web.RequestHandler, AuthMixin):
 
     def post(self):
         # post to call a specific phone number
+        phone = self.get_argument('phone', default=None)
+        if phone:
+            from lib import facetime
+            facetime.make_call(phone)
+            self.write(1)
 
         # post to dispense a treat
-        pass
-
+        dispense = self.get_argument('dispense', default=None)
+        if dispense:
+            from lib import dispense_treat
+            dispense_treat.run_arduino()
+            self.write(1)
 
 class AuthHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
@@ -105,17 +114,19 @@ class AuthHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             raise tornado.web.HTTPError(500, "Google auth failed")
         # Save the authenticated user's details in a secure cookie
         self.set_secure_cookie('session_email', user.get('email'))
-        self.redirect('/')
+        self.redirect('/backdoor')
 
 
 app_settings = {
-    'static_path': os.path.join(os.path.dirname(__file__), "static")
+    'static_path': os.path.join(os.path.dirname(__file__), "static"),
+    'cookie_secret': settings.COOKIE_SECRET
 }
 
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/add", AddTreatHandler),
     (r"/backdoor", BackdoorHandler),
+    (r"/auth", AuthHandler),
     (r"/static/.*", tornado.web.StaticFileHandler)
 ], **app_settings)
 

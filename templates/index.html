@@ -22,6 +22,7 @@ $(document).ready(function(){
 			data: data,
 			success: function(data) {
 				console.log(data);
+				$("#appointment").html(data);
 				$("#homeBG").fadeOut(700);
 				$('#submitWrapper').delay(800).fadeIn(1000);
 			},
@@ -50,8 +51,9 @@ $(document).ready(function(){
 <body>
 
 <div id="share">
-	<p class="share">share</p>
-	<img src="{{static_url('img/fb.png')}}" /><iframe src="//www.facebook.com/plugins/like.php?href=www.treatchewie.com&amp;send=false&amp;layout=standard&amp;width=20&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35&amp;appId=143089569079082" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:20px; height:35px;" allowTransparency="true"></iframe>
+	<p class="share">share</p>	
+	<a class="fbshare" name="fb_share" type="icon" share_url="http://www.treatchewie.com"></a> 
+	<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 	<a href="https://twitter.com/share?text=I+treated+Chewie+and+you+should+too!&url=http://www.treatchewie.com"><img src="{{static_url('img/tw.png')}}" /></a>
 	<p class="howitworks">how it works</p><p class="home">home</p>
 </div>
@@ -59,7 +61,7 @@ $(document).ready(function(){
 <div id="homeBG">	
 	<div id="homeWrapper">
 		<img class="chewiePic" src="{{static_url('img/treatsforchewie.png')}}" />
-		<p class="chewieDescription">The feel-good interactive feeding experience that makes the cutest dog in the whole wide world the happiest (but not fattest) dog you've ever seen.  To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, 5 minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).</p>
+		<p class="chewieDescription">The feel-good interactive feeding experience that makes the cutest dog in the whole wide world the happiest (but not fattest) dog you've ever seen.  To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, ten minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).</p>
 		<form action="/add" method="POST" id="add_form">
 			<div class="submit">
 				<p>your first name</p>
@@ -76,8 +78,8 @@ $(document).ready(function(){
 <div id="submitWrapper" style="display:none;">
 	<img class="clock" src="{{static_url('img/finished.png')}}">
 	<div class="row"> 
-		<h1>Sunday, October 30</h1>
-		
+		<h1>Congratulations, you've scheduled a chewie treat appointment for:</h1>
+		<p id="appointment"></p>
 	</div>
 </div>
 

@@ -34,11 +34,14 @@ input {
 	margin: 0;
 	margin-top: 2px;
 }
-#share img {
+#share img, .fbshares {
 	float: left;
 	height: 20px;
 	width: 20px;
 	padding: 2px;
+}
+.fbconnectbutton_simple, .fbconnectbutton_rtl_simple {
+	background-image: url(../img/fb.png);
 }
 .howitworks, .home {
 	float: right;
@@ -114,6 +117,7 @@ input {
 	width: 870px;
 	margin: 0 auto;
 	margin-top: -32px;
+	padding-bottom: 30px;
 }
 #howitworksWrapper img {
 	margin-top: 65px;

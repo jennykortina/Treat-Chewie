@@ -162,6 +162,7 @@ class TreatQueue(MongoMixIn):
         tq = list()
         for t in treats:
             del t['_id']
+            del t[klass.A_PHONE]
             treat_time = t.get(klass.A_TREAT_TIME)
             treat_d = parse(treat_time[:10])
             day = treat_d.day

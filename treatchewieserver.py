@@ -1,6 +1,7 @@
 import os
 import logging
 import re
+import simplejson
 
 import settings
 
@@ -88,7 +89,7 @@ class AddTreatHandler(BaseHandler):
 class QueueHandler(BaseHandler):
     def get(self):
         treat_queue = TreatQueue.get_treat_queue()
-        self.write(treat_queue)
+        self.write(simplejson.dumps(treat_queue))
 
 
 class BackdoorHandler(BaseHandler, AuthMixin):

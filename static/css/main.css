@@ -41,7 +41,7 @@ input {
 	padding: 2px;
 }
 .fbconnectbutton_simple, .fbconnectbutton_rtl_simple {
-	background-image: url(http://treatchewie.dyndns.info/static/img/fb.png !important);
+	background-image: url(http://treatchewie.dyndns.info/static/img/fb.png) !important;
 }
 .howitworks, .home {
 	float: right;
@@ -51,7 +51,9 @@ input {
 /*home style */
 #homeBG {
 	display:none;
-	background: url(../img/chewie.png) #161616;background-repeat:no-repeat;background-position:left bottom;
+	background: url(../img/chewie.png) #161616;
+	background-repeat:no-repeat;
+	background-position:left bottom;
 	height: 100%;
 	width: 100%;
 }

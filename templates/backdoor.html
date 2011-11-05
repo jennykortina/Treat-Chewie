@@ -45,20 +45,18 @@ $(document).ready(function(){
 <div id="homeBG">	
 	<div id="homeWrapper">
         <div style="margin-top:100px"></div>
-        Get the Treat Machine to make a facetime call
+		The backdoor page is for testing and dispensing treats on demand.  You can make a facetime call and then you can click the "dispense treat" button to dispense treats on demand.  Have fun!
 		<form action="/backdoor" method="POST" id="make_call_form">
 			<div class="submit">
-				<p>number to call</p>
 				<input type="text" id="phone" name="phone" />
 			</div>	
-			<img class="makeCall" src="{{static_url('img/submit.png')}}" />
+			<img class="makeCall" src="{{static_url('img/call.png')}}" />
 		</form>
         </br>
-        Dispense a treat.
 		<form action="/backdoor" method="POST" id="dispense_form">
 			<div class="submit">
 			</div>	
-			<img class="dispenseTreat" src="{{static_url('img/submit.png')}}" />
+			<img class="dispenseTreat" src="{{static_url('img/dispense.png')}}" />
 		</form>
 	</div>	
 </div>	

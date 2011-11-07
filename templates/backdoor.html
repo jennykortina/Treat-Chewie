@@ -17,18 +17,17 @@ $(document).ready(function(){
 		return this.optional(element) || phone_number.length > 9 &&
 			phone_number.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
 	}, "Please specify a valid phone number");
-
-	$("#make_call_form").validate({
-	  rules: {
-	    field: {
-	      required: true,
-	      phoneUS: true
-	    }
-	  }
-	
-	});
 	
 	$(".makeCall").click(function(){
+		$("#make_call_form").validate({
+		  rules: {
+		    field: {
+		      required: true,
+		      phoneUS: true
+		    }
+		  }
+
+		});
 		$('.makeCall').fadeOut(1000);
 		$('.makeCall').fadeIn(1000);
 		var data = {

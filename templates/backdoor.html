@@ -23,7 +23,10 @@ $(document).ready(function(){
 			data: data,
             success: function(data) {},
 			error: function() {}
-		});  
+		}); 
+		$(':input','#make_call_form')
+		 .not(':button, :submit, :reset, :hidden')
+		 .val(''); 
 	});
 
     $(".dispenseTreat").click(function(){

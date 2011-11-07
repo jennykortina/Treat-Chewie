@@ -140,4 +140,8 @@ input {
 }
 .makeCall {
 	margin-left: 20px;
+	cursor: pointer;
+}
+.dispenseTreat {
+	cursor: pointer;
 }

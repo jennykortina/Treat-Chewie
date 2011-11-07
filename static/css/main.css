@@ -49,7 +49,7 @@ input {
 	cursor: pointer;
 }
 /*home style */
-#homeBG {
+#homeBG, #backdoorBG {
 	display:none;
 	background: url(../img/chewie.png) #161616;
 	background-repeat:no-repeat;
@@ -57,7 +57,7 @@ input {
 	height: 100%;
 	width: 100%;
 }
-#homeWrapper {
+#homeWrapper, #backdoorWrapper {
 	width: 455px;
 	margin: 0 auto;
 	margin-top: -25px;
@@ -132,4 +132,12 @@ input {
 }
 .howitworksDescription {
 	width: 500px;
+}
+/*backdoor style */
+#backdoorWrapper #phone {
+	float:left; 
+	margin-top: 10px;
+}
+.makeCall {
+	margin-left: 20px;
 }

@@ -8,7 +8,7 @@
 <script>
 $(document).ready(function(){
 	$("body").ready(function(){
-	    $('#homeBG').fadeIn(3000);
+	    $('#backdoorBG').fadeIn(3000);
 	});
 	
 	$(".makeCall").click(function(){
@@ -47,13 +47,13 @@ $(document).ready(function(){
 
 <body>
 
-<div id="homeBG">	
-	<div id="homeWrapper">
+<div id="backdoorBG">	
+	<div id="backdoorWrapper">
 		<img class="chewiePic" src="{{static_url('img/backdoor.png')}}" />
 		<p>The backdoor page is for testing and dispensing treats on demand.  You can make a facetime call and then you can click the "dispense treat" button to dispense treats.  Have fun!</p>
 		<form action="/backdoor" method="POST" id="make_call_form">
-				<input style="float:left; margin-top: 10px;" type="text" id="phone" name="phone" />
-			<img class="makeCall" style="margin-left: 20px;" src="{{static_url('img/call.png')}}" />
+				<input type="text" id="phone" name="phone" />
+			<img class="makeCall" src="{{static_url('img/call.png')}}" />
 		</form>
         </br>
 		<form action="/backdoor" method="POST" id="dispense_form">

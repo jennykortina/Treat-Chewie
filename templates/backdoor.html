@@ -4,7 +4,6 @@
 <title>Treat Chewie</title>
 <link type="text/css" href="{{static_url('css/main.css')}}" rel="stylesheet">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 
 <script>
 $(document).ready(function(){
@@ -12,22 +11,7 @@ $(document).ready(function(){
 	    $('#homeBG').fadeIn(3000);
 	});
 	
-	jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
-	    phone_number = phone_number.replace(/\s+/g, ""); 
-		return this.optional(element) || phone_number.length > 9 &&
-			phone_number.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
-	}, "Please specify a valid phone number");
-	
 	$(".makeCall").click(function(){
-		$("#make_call_form").validate({
-		  rules: {
-		    phone: {
-		      required: true,
-		      phoneUS: true
-		    }
-		  }
-
-		});
 		$('.makeCall').fadeOut(1000);
 		$('.makeCall').fadeIn(1000);
 		var data = {

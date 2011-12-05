@@ -1,7 +1,7 @@
 import datetime
 import logging
+import time
 from dateutil.parser import parse
-#import time
 
 from collections import defaultdict
 
@@ -21,6 +21,8 @@ class TreatQueue(MongoMixIn):
     A_TREAT_TIME        = 'treat_time'      # year-month-day-hour e.g. 2011-10-23-24
     A_PRETTY_HOUR       = 'pretty_hour'      # formatted for printing
     A_STATUS            = 'status'
+    A_TIMESTAMP_CREATED = 'ts_created'
+    A_TIMESTAMP_UPDATED = 'ts_updated'
 
     STATUS_PENDING      = 1
     STATUS_COMPLETED    = 2
@@ -51,7 +53,8 @@ class TreatQueue(MongoMixIn):
             klass.A_NAME: name,
             klass.A_PHONE: phone,
             klass.A_TREAT_TIME: treat_time_string,
-            klass.A_STATUS: klass.STATUS_PENDING
+            klass.A_STATUS: klass.STATUS_PENDING,
+            klass.A_TIMESTAMP_CREATED: int(time.time())
         }
         try:
             klass.mdbc().insert(doc)
@@ -64,8 +67,13 @@ class TreatQueue(MongoMixIn):
     def complete_treat(klass, treat_id, new_status):
         if type(treat_id) in [str, unicode]:
             treat_id = ObjectId(treat_id)
-        spec = {klass.A_ID: treat_id}
-        doc = {klass.A_STATUS: new_status}
+        spec = {
+            klass.A_ID: treat_id
+        }
+        doc = {
+            klass.A_STATUS: new_status,
+            klass.A_TIMESTAMP_UPDATED: int(time.time())
+        }
         document = {"$set": doc}
         try:
             resp = klass.mdbc().update(spec, document, upsert=True, safe=True)

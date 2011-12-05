@@ -69,13 +69,20 @@ $(document).ready(function(){
 	<a class="fbshare" name="fb_share" type="icon" share_url="http://www.treatchewie.com"></a> 
 	<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 	<a href="https://twitter.com/share?text=Send+@Chewie+treats!&url=http://www.treatchewie.com"><img src="{{static_url('img/tw.png')}}" /></a>
-	<p class="howitworks">how it works</p><p class="home">home</p>
 </div>
 
 <div id="homeBG">	
 	<div id="homeWrapper">
 		<img class="chewiePic" src="{{static_url('img/treatsforchewie.png')}}" />
-		<p class="chewieDescription">The feel-good interactive feeding experience that makes the cutest dog in the whole wide world the happiest (but not fattest) dog you've ever seen.  To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, ten minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).</p>
+		<p class="chewieDescription">To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, ten minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).</p>
+		
+		<div id="howitworksVideo">
+			<iframe src="http://player.vimeo.com/video/32905558?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> <br>
+		
+
+		</div>
+		
+		
 		<form action="/add" method="POST" id="add_form">
 			<div class="submit">
 				<p>your first name</p>
@@ -95,18 +102,6 @@ $(document).ready(function(){
 		<h1>Congratulations, you've scheduled an appointment for:</h1>
 		<h2 id="appointment"></h2>
 	</div>
-</div>
-
-<div id="howitworksWrapper" style="display:none;">
-	<img src="{{static_url('img/howitworks.png')}}" />
-	<iframe src="http://player.vimeo.com/video/32905558?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-	Some things to note:
-	<ul>
-	<li>Chewie is only receives treats once an hour on the hour</li>
-	<li>Chewie is only open for treat business Monday through Friday 10a-6p</li>
-	<li>In order to receive Chewie's call you must have an iPhone with Facetime and you must be on WIFI at the time of the call</li>
-	</ul>
-
 </div>
 
 

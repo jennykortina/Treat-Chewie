@@ -34,6 +34,7 @@ $(document).ready(function(){
 					$("#error_message").html(data.message);
 				}
 				$("#homeBG").fadeOut(700);
+				$('.home').delay(800).fadeIn(1000);
 				$('#submitWrapper').delay(800).fadeIn(1000);
 			},
 			error: function() {
@@ -46,6 +47,7 @@ $(document).ready(function(){
 		$("#howitworksWrapper").fadeOut(700);
 		$("#submitWrapper").fadeOut(700);
 		$('#homeBG').delay(800).fadeIn(1000);
+		$('.home').fadeOut(700);
 	});
 
 });
@@ -73,6 +75,7 @@ $(document).ready(function(){
 	<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 	<a href="https://twitter.com/share?text=Send+@Chewie+treats!&url=http://www.treatchewie.com"><img src="{{static_url('img/tw.png')}}" /></a>
 	<a class="howitworks" href="https://github.com/jennykortina/Treat-Chewie" target="_blank">make your own!</a>
+	<span class="home" style="display:none">home</span>
 </div>
 
 <div id="homeBG">	

@@ -42,12 +42,6 @@ $(document).ready(function(){
 		});  
 	});
 
-	$(".howitworks").click(function(){
-		$("#homeBG").fadeOut(700);
-		$("#submitWrapper").fadeOut(700);
-		$('#howitworksWrapper').delay(800).fadeIn(1000);
-	});
-
 	$(".home").click(function(){
 		$("#howitworksWrapper").fadeOut(700);
 		$("#submitWrapper").fadeOut(700);
@@ -78,12 +72,13 @@ $(document).ready(function(){
 	<a class="fbshare" name="fb_share" type="icon" share_url="http://www.treatchewie.com"></a> 
 	<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 	<a href="https://twitter.com/share?text=Send+@Chewie+treats!&url=http://www.treatchewie.com"><img src="{{static_url('img/tw.png')}}" /></a>
+	<a class="howitworks" href="https://github.com/jennykortina/Treat-Chewie" target="_blank">make your own!</a>
 </div>
 
 <div id="homeBG">	
 	<div id="homeWrapper">
 		<img class="chewiePic" src="{{static_url('img/treatsforchewie.png')}}" />
-		<p class="chewieDescription">To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, ten minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).	<a title="An explanation of how Chewie's treat machine works." href="http://vimeo.com/32905558&width=700" rel="prettyPhoto">Confused? Watch the video!</a></p>
+		<p class="chewieDescription">To send Chewie a treat enter your name and phone number into the input boxes below. Your name will be added to a queue, ten minutes before your turn Chewie will text you, and then when it's your turn Ms. Chewie will call you on facetime so you can see your treat being eaten (yes you have to have an iPhone with facetime and be on wifi).	<a title="An explanation of how Chewie's treat machine works." href="http://vimeo.com/32905558&width=620" rel="prettyPhoto" class="purp">Confused? Watch the video!</a></p>
 		
 		<form action="/add" method="POST" id="add_form">
 			<div class="submit">

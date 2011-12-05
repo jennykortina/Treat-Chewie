@@ -1,7 +1,7 @@
 Treat Chewie
 ===========
-![](https://github.com/jennykortina/Treat-Chewie/raw/master/static/images/treatchewie.jpg)
-![](https://github.com/jennykortina/Treat-Chewie/raw/master/static/images/chewie.gif)
+![](https://github.com/jennykortina/Treat-Chewie/raw/master/static/img/treatchewie.jpg)
+![](https://github.com/jennykortina/Treat-Chewie/raw/master/static/img/chewie.gif)
 
 Hardware
 ========

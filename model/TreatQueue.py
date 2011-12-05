@@ -114,6 +114,10 @@ class TreatQueue(MongoMixIn):
         return klass.mdbc().find_one(spec)
 
     @classmethod
+    def get_latest_treat(klass):
+        return klass.get_next_treat(get_latest=True)
+
+    @classmethod
     def get_next_treat_time(klass, get_latest=False):
         next_treat = klass.get_next_treat(get_latest=get_latest)
         if next_treat:

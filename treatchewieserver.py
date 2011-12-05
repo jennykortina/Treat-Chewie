@@ -59,27 +59,46 @@ class MainHandler(BaseHandler):
 
 class AddTreatHandler(BaseHandler):
     def post(self):
+        success = False
+        error = None
         phone = self.get_argument('phone')
         name = self.get_argument('name')
         phone = format_valid_phone_number(phone)
         if phone and name:
-            next_treat_slot = TreatQueue.get_next_open_treat_slot()
-            treat_time = TreatQueue.add_to_queue(name, phone, next_treat_slot)
-            if treat_time:
-                resp = {
-                    'success':1,
-                    'treat_time': treat_time
-                }
+            latest_treat = TreatQueue.get_latest_treat()
+            if latest_treat and latest_treat.get(TreatQueue.A_PHONE) == phone:
+                error = 'duplicate'
             else:
-                resp = {
-                    'error': 1,
-                    'message': 'Sorry, there was an error adding you to the queue'
-                }
+                next_treat_slot = TreatQueue.get_next_open_treat_slot()
+                treat_time = TreatQueue.add_to_queue(name, phone, next_treat_slot)
+                if treat_time:
+                    success = True
+                else:
+                    error = 'other_error'
         else:
+            error = 'missing_param'
+        
+        if success:
+            resp = {
+                'success':1,
+                'treat_time': treat_time
+            }
+        elif error == "missing_param":
             resp = {
                 'error': 1,
                 'message': 'Either first_name or phone_number were not provided'
             }
+        elif error == "duplicate":
+            resp = {
+                'error': 1,
+                'message': 'Sorry, you can\'t sign up for two treats in a row'
+            }
+        elif error == "other_error":
+            resp = {
+                'error': 1,
+                'message': 'Sorry, there was an error adding you to the queue'
+            }
+
         self.write(resp)
 
     def get(self):

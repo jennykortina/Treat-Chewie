@@ -23,7 +23,13 @@ $(document).ready(function(){
 			data: data,
 			success: function(data) {
 				console.log(data);
-				$("#appointment").html(data.treat_time);
+				if (data.success) {
+					$("#success_response").toggle();
+					$("#appointment").html(data.treat_time);
+				} else if (data.error) {
+					$("#error_response").toggle();
+					$("#error_message").html(data.message);
+				}
 				$("#homeBG").fadeOut(700);
 				$('#submitWrapper').delay(800).fadeIn(1000);
 			},
@@ -98,9 +104,12 @@ $(document).ready(function(){
 
 <div id="submitWrapper" style="display:none;">
 	<img class="clock" src="{{static_url('img/finished.png')}}">
-	<div class="row"> 
+	<div class="row" id="success_response" style="display:none"> 
 		<h1>Congratulations, you've scheduled an appointment for:</h1>
 		<h2 id="appointment"></h2>
+	</div>
+	<div class="row" id="error_response" style="display:none">
+		<h1 id="error_message"></h2>
 	</div>
 </div>
 
